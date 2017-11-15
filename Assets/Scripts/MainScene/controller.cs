@@ -12,8 +12,6 @@ public class controller : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public Sprite SpriteDown;
     public Sprite SpriteUp;
 
-    private bool status = false;
-
     public void OnPointerDown(PointerEventData evenData)
     {
         // вид кнопки когда она нажата
@@ -34,20 +32,5 @@ public class controller : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         Window.SetBool("win_hide", false);
     }
 
-    private void Update()
-    {
-        // информация об анимации на текщем слое Base Layer аниматора
-        AnimatorStateInfo stateInfo = Window.GetCurrentAnimatorStateInfo(0);
-        
-        // если состояние анимации "end" то выполняем какие-то действия
-        if (stateInfo.IsName("end"))
-        {
-            if (status == false)
-            {
-                status = !status;
-                Debug.Log("конец анимации маин сцена");
-                //MainController.AddStack(Window.gameObject.name);
-            }
-        }
-    }
+
 }

@@ -8,7 +8,6 @@ public class controller_set : MonoBehaviour, IPointerUpHandler, IPointerDownHand
 {
 
     public Animator Window;
-    public RuntimeAnimatorController RuntimeAnimatorController;
 
     public GameObject BackGround;
     public Sprite down_button;
@@ -27,16 +26,13 @@ public class controller_set : MonoBehaviour, IPointerUpHandler, IPointerDownHand
         // проигрываем звук щелчка
         GetComponent<AudioSource>().Play();
 
-        // загружаем контроллер анимации
-        Window.runtimeAnimatorController = RuntimeAnimatorController;
-
-        // включаем анимацию
-        Window.enabled = true;
+        Window.SetBool("win_show", true);
+        Window.SetBool("win_hide", false);
 
         // затеняем фон и делаем его не активным
         BackGround.SetActive(true);
 
-        MainController.AddStack(Window.gameObject.name);
+        //MainController.AddStack(Window.gameObject.name);
     }
 
 
