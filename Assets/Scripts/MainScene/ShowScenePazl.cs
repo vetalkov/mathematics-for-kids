@@ -8,9 +8,6 @@ public class ShowScenePazl : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     // окно которое будет показано
     public Animator Window;
 
-    // анимация показа окна
-    public RuntimeAnimatorController RuntimeAnimatorController;
-
     public void OnPointerDown(PointerEventData pointeventData)
     {
     }
@@ -20,14 +17,11 @@ public class ShowScenePazl : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         // проигрываем звук щелчка
         GetComponent<AudioSource>().Play();
 
-        // анимация выезда окна
-        Window.runtimeAnimatorController = RuntimeAnimatorController;
-
-        // включаем анимацию
-        Window.enabled = true;
+        Window.SetBool("win_show", true);
+        Window.SetBool("win_hide", false);
 
         // добавляем в стек новое окно
-        MainController.AddStack(Window.gameObject.name);
+        //MainController.AddStack(Window.gameObject.name);
     }
 
 }

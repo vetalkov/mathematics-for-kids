@@ -7,26 +7,18 @@ public class button_level_1 : MonoBehaviour, IPointerUpHandler, IPointerDownHand
 {
     public Animator Window;
 
-    public int showHash = Animator.StringToHash("idle");
-
-    //public RuntimeAnimatorController AnimateControllerShowWindow;
-
     public void OnPointerDown(PointerEventData evenData)
     {
     }
 
     public void OnPointerUp(PointerEventData evenData)
     {
-        // запускаем проигрывание анимации
-        //Window.runtimeAnimatorController = AnimateControllerShowWindow;
-        //Window.enabled = true;
 
-        Debug.Log(showHash);
-
-        Window.SetBool(showHash, true);
+        Window.SetBool("win_show", true);
+        Window.SetBool("win_hide", false);
 
         // загружаем сцену
-        MainController.AddStack(Window.gameObject.name);
+        //MainController.AddStack(Window.gameObject.name);
     }
 
 

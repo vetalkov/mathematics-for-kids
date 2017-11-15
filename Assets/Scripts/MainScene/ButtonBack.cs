@@ -1,15 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
-
 
 public class ButtonBack : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
-
     public Animator Window;
-    public RuntimeAnimatorController AnimateControllerShowWindow;
 
     public void OnPointerDown(PointerEventData evenData)
     {
@@ -17,10 +11,10 @@ public class ButtonBack : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
     public void OnPointerUp( PointerEventData evenData )
     {
-        Window.enabled = true;
-        Window.runtimeAnimatorController = AnimateControllerShowWindow;
+        Window.SetBool("win_show", false);
+        Window.SetBool("win_hide", true);
         GetComponent<AudioSource>().Play();
 
-        MainController.DeleteStack();
+        //MainController.DeleteStack();
     }
 }

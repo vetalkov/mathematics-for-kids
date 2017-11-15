@@ -25,10 +25,10 @@ public class MainController : MonoBehaviour
     {
         WindowSettings.enabled = false;
         //Scene1.enabled = false;
-        ScenePazl.enabled = false;
-        level_1_background.enabled = false;
+        //ScenePazl.enabled = false;
+        //level_1_background.enabled = false;
 
-        // записываем текущее окно
+        // записываем текущее окно в стек
         AddStack(gameObject.name);
 
     }
