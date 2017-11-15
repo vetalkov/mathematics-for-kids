@@ -36,7 +36,6 @@ public class controller : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         // информация об анимации на текщем слое Base Layer аниматора
         AnimatorStateInfo stateInfo = Window.GetCurrentAnimatorStateInfo(0);
 
-        // добавляем в стек новое окно
         if (stateInfo.IsName("end"))
         {
             if (status == true)
