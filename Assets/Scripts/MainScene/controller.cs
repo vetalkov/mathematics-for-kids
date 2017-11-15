@@ -33,7 +33,7 @@ public class controller : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     private void Update()
     {
-        // информация об анимации на текщем слое Base Layer аниматора.
+        // информация об анимации на текщем слое Base Layer аниматора...
         AnimatorStateInfo stateInfo = Window.GetCurrentAnimatorStateInfo(0);
 
         if (stateInfo.IsName("end"))
