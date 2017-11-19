@@ -5,6 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Canvas
+  - Dig1
+  - Dig2
+  - Dig3
+  - Dig4
+  - Dig5
+  - Dig6
+  - Dig7
+  - Dig8
+  - Dig9
   layers:
   - Default
   - TransparentFX

@@ -10,14 +10,15 @@ public class PlayOnClick : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     public void OnPointerDown(PointerEventData evenData)
     {
         AudioSource audio = GetComponent<AudioSource>();
-        audio.clip = aClip;
-        audio.Play();
+        if (!audio.isPlaying)
+        {
+            audio.clip = aClip;
+            audio.Play();
+        }
     }
 
     public void OnPointerUp(PointerEventData evenData)
     {
-
-        
     }
 
 }

@@ -7,39 +7,48 @@ public class button_level_1 : MonoBehaviour, IPointerUpHandler, IPointerDownHand
 {
     public Animator Window;
 
-    private bool status = false;
+    private float nextFire = 0.0f;
+    private float fireRate = 0.5f;
 
-    public void OnPointerDown(PointerEventData evenData)
+    private bool start_load;
+
+    public void OnPointerDown(PointerEventData eventData)
     {
+
     }
 
-    public void OnPointerUp(PointerEventData evenData)
+    public void OnPointerUp(PointerEventData eventData)
     {
-        // проиграть звук нажатия
-        GetComponent<AudioSource>().Play();
+        if (Time.time > nextFire)
+        {
+            //текущее время плюс частота
+            nextFire = Time.time + fireRate;
+            
+            //проиграть звук нажатия
+            GetComponent<AudioSource>().Play();
 
-        Window.SetBool("win_show", true);
-        Window.SetBool("win_hide", false);
+            Window.SetBool("end_status", true);
+            Window.Play("show_win");
 
-        // загружаем сцену
-        // MainController.AddStack(Window.gameObject.name);
+            start_load = false;
+        }
     }
 
     private void Update()
     {
+        
         // информация об анимации на текщем слое Base Layer аниматора
         AnimatorStateInfo stateInfo = Window.GetCurrentAnimatorStateInfo(0);
-
-        // если состояние анимации "end" то выполняем какие-то действия
+        
         if (stateInfo.IsName("end"))
         {
-            if (status == false)
+            if (!start_load)
             {
-                status = !status;
-                Debug.Log("конец анимации маин сцена");
+                start_load = !start_load;
+                
+                // записываем в стек
                 MainController.AddStack(Window.gameObject.name);
             }
         }
     }
-
 }

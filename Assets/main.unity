@@ -639,10 +639,10 @@ RectTransform:
   m_Father: {fileID: 1282857068}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3476, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3497, y: 0}
+  m_SizeDelta: {x: 1066, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &398536702
 Animator:
@@ -800,6 +800,16 @@ MonoBehaviour:
   - {fileID: 1602058737672986, guid: b366cf575478ee34e82bd559ae66105a, type: 2}
   - {fileID: 1602058737672986, guid: e3770d4ba0b7bc2429b5d7a8734dda80, type: 2}
   - {fileID: 1602058737672986, guid: 578cc4aec77c2c4448d5ba8512da6859, type: 2}
+  prefabDigi:
+  - {fileID: 1353554526303254, guid: 522b80b645aba1b49914d5a439f0d235, type: 2}
+  - {fileID: 1193705378678696, guid: 5dd601b9c5fe7a046bd58fadb10f7555, type: 2}
+  - {fileID: 1408911321950276, guid: 34289a14239cd314bb69fe988b5802df, type: 2}
+  - {fileID: 1247974580134586, guid: 95549158116e4f941991cb57c1a5f760, type: 2}
+  - {fileID: 1794050523434778, guid: fc84809b1a6e0c14cb76820db25c7399, type: 2}
+  - {fileID: 1794050523434778, guid: baa71bbeb06716f41aa1cff1a9cbf157, type: 2}
+  - {fileID: 1794050523434778, guid: 050ee3214ae2a5646af137884bd9ffd0, type: 2}
+  - {fileID: 1794050523434778, guid: 0d98dea28dddc524e8ee220b4d5c9414, type: 2}
+  - {fileID: 1794050523434778, guid: f05ca4abb438c4d4ea9592ab818f4744, type: 2}
   Window: {fileID: 513392691}
 --- !u!82 &513392693
 AudioSource:
@@ -1154,8 +1164,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Window: {fileID: 326738257}
-  RuntimeAnimatorController: {fileID: 9100000, guid: 06a6bd69b2e20394a99612b66ac4dcb7,
-    type: 2}
   BackGround: {fileID: 1714666101}
 --- !u!82 &864896048
 AudioSource:

@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
 public class ShowScenePazl : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
+
+    private float nextFire = 0.0f;
+    private float fireRate = 0.5f;
 
     // окно которое будет показано
     public Animator Window;
@@ -14,14 +18,19 @@ public class ShowScenePazl : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     public void OnPointerUp(PointerEventData pointeventData)
     {
-        // проигрываем звук щелчка
-        GetComponent<AudioSource>().Play();
+        if (Time.time > nextFire)
+        {
+            // текущее время плюс частота
+            nextFire = Time.time + fireRate;
 
-        Window.SetBool("win_show", true);
-        Window.SetBool("win_hide", false);
+            // проигрываем звук щелчка
+            GetComponent<AudioSource>().Play();
 
-        // добавляем в стек новое окно
-        //MainController.AddStack(Window.gameObject.name);
+            Window.Play("show_win");
+
+            // добавляем в стек новое окно
+            MainController.AddStack(Window.gameObject.name);
+        }
     }
 
 }

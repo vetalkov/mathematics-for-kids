@@ -7,12 +7,13 @@ using UnityEngine.EventSystems;
 public class controller : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public Animator Window;
-    //private int endAnim = Animator.StringToHash("end");
+
+    private bool status;
 
     public Sprite SpriteDown;
     public Sprite SpriteUp;
 
-    public void OnPointerDown(PointerEventData evenData)
+    public void OnPointerDown(PointerEventData eventData)
     {
         // вид кнопки когда она нажата
         GetComponent<Image>().sprite = SpriteDown;
@@ -20,17 +21,18 @@ public class controller : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        // вид кнопки когда она отжата
-        GetComponent<Image>().sprite = SpriteUp;
-        
-        // проиграть звук нажатия
-        GetComponent<AudioSource>().Play();
-        
-        // устанавливаем переменную end_anim в анимации в true
-        // что позволит перейти к следующему состоянию анимации
-        Window.SetBool("win_show", true);
-        Window.SetBool("win_hide", false);
-    }
+            // вид кнопки когда она отжата
+            GetComponent<Image>().sprite = SpriteUp;
 
+            // проиграть звук нажатия
+            GetComponent<AudioSource>().Play();
+
+            // проигрываем анимацию
+            Window.Play("show_win");
+
+            // записываем в стек
+            MainController.AddStack(Window.gameObject.name);
+
+    }
 
 }

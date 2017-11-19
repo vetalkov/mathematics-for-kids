@@ -11,10 +11,16 @@ public class ButtonBack : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
     public void OnPointerUp( PointerEventData evenData )
     {
-        Window.SetBool("win_show", false);
-        Window.SetBool("win_hide", true);
-        GetComponent<AudioSource>().Play();
+            Window.Play("hide_win");
+            GetComponent<AudioSource>().Play();
 
-        //MainController.DeleteStack();
+            MainController.DeleteStack();
     }
 }
+
+
+//if (Time.time > nextFire)
+//{
+// текущее время плюс частота
+// nextFire = Time.time + fireRate;
+// }

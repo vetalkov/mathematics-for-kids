@@ -29,31 +29,33 @@ public class MainController : MonoBehaviour
 
     public static void AddStack(string name) {
           ActiveWindow.Add(name);
-          //GetStack();
     }
 
     public static void DeleteStack()
     {
         // удаляем последнее открытое окно
         ActiveWindow.RemoveAt(ActiveWindow.Count - 1);
-        //GetStack();
     }
 
     public static string GetStack()
     {
-        return ActiveWindow[ActiveWindow.Count - 1].ToString();
+        if (ActiveWindow.Count > 0)
+        {
+            return ActiveWindow[ActiveWindow.Count - 1].ToString();
+        }
+        else {
+            return "";
+        }
     }
 
-    public bool SetStartAnimation()
+    public static int GetStackCount()
     {
-        StatusAnimationEnd = true;
-        return StatusAnimationEnd;
+        return ActiveWindow.Count;
     }
 
-    public bool SetEndAnimation()
+
+    private void Update()
     {
-        StatusAnimationEnd = true;
-        return StatusAnimationEnd;
+       
     }
-
 }

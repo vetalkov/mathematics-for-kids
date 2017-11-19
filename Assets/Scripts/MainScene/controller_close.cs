@@ -10,17 +10,26 @@ public class controller_close : MonoBehaviour, IPointerUpHandler, IPointerDownHa
 
     public GameObject BackGround;
 
+    private float nextFire = 0.0f;
+    private float fireRate = 0.5f;
+
     public void OnPointerDown(PointerEventData evenData)
     {
     }
 
     public void OnPointerUp(PointerEventData evenData) {
-        GetComponent<AudioSource>().Play();
+        if (Time.time > nextFire)
+        {
+            // текущее время плюс частота
+            nextFire = Time.time + fireRate;
 
-        BackGround.SetActive(false);
-        Window.SetBool("win_show", false);
-        Window.SetBool("win_hide", true);
-        //MainController.DeleteStack();
+            GetComponent<AudioSource>().Play();
+
+            BackGround.SetActive(false);
+            Window.SetBool("win_show", false);
+            Window.SetBool("win_hide", true);
+            MainController.DeleteStack();
+        }
     }
 
  

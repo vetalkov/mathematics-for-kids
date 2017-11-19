@@ -13,6 +13,9 @@ public class controller_set : MonoBehaviour, IPointerUpHandler, IPointerDownHand
     public Sprite down_button;
     public Sprite up_button;
 
+    private float nextFire = 0.0f;
+    private float fireRate = 0.5f;
+
     public void OnPointerDown(PointerEventData evenData)
     {
         GetComponent<Image>().sprite = down_button;
@@ -20,22 +23,25 @@ public class controller_set : MonoBehaviour, IPointerUpHandler, IPointerDownHand
 
     public void OnPointerUp(PointerEventData evenData)
     {
+        if (Time.time > nextFire)
+        {
+            // текущее время плюс частота
+            nextFire = Time.time + fireRate;
 
-        GetComponent<Image>().sprite = up_button;
+            GetComponent<Image>().sprite = up_button;
 
-        // проигрываем звук щелчка
-        GetComponent<AudioSource>().Play();
+            // проигрываем звук щелчка
+            GetComponent<AudioSource>().Play();
 
-        Window.SetBool("win_show", true);
-        Window.SetBool("win_hide", false);
+            Window.SetBool("win_show", true);
+            Window.SetBool("win_hide", false);
 
-        // затеняем фон и делаем его не активным
-        BackGround.SetActive(true);
+            // затеняем фон и делаем его не активным
+            BackGround.SetActive(true);
 
-        //MainController.AddStack(Window.gameObject.name);
+            MainController.AddStack(Window.gameObject.name);
+        }
     }
-
-
-
+    
 
 }
