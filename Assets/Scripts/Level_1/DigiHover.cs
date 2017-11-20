@@ -205,7 +205,7 @@ public class DigiHover : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
             // сбрасываем счетчик
             controller_level_1.countRound = 0;
             controller_level_1.StartScene = false;
-            MainController.DeleteStack();
+            MainController.DeleteScene();
         }
     }
 

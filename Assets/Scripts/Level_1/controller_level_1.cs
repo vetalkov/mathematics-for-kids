@@ -28,7 +28,7 @@ public class controller_level_1 : MonoBehaviour {
 
      private void Update () {
 
-            if (MainController.GetStack() == Window.gameObject.name)
+            if (MainController.GetCurrentScene() == Window.gameObject.name)
             {
                 if (!StartScene) 
                 {

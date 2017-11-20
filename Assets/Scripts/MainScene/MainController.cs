@@ -8,77 +8,195 @@ public class MainController : MonoBehaviour
 {
 
     public Animator WindowSettings;
-    public Animator Scene1;
+    public Animator MainWindow;
+    public Animator Scene_1;
+    public Animator Level_1;
     public Animator ScenePazl;
     public Animator level_1_background;
-    public Animator MainWindow;
 
-    public static ArrayList ActiveWindow;
+    /// <summary>
+    /// массив служащий стеком открытых окон
+    /// </summary>
+    private static ArrayList ListScene;
 
-    public static bool StatusAnimationEnd;
+    /// <summary>
+    /// переменная refreshShowWin нужна чтобы показать анимацию только один раз для показа окна
+    /// </summary>
+    public static bool refreshShowWin;
 
+    /// <summary>
+    /// переменная refreshHideWin нужна чтобы показать анимацию только один раз для скрытия окна
+    /// </summary>
+    public static bool refreshHideWin;
+
+    /// <summary>
+    /// создаем массив в который будем записывать открытые окна
+    /// </summary>
     private void Awake()
     {
-        // создаем массив в который будем записывать открытые окна
-        ActiveWindow = new ArrayList();
+        ListScene = new ArrayList();
     }
 
+    public static string curWin;
+    public static string preWin;
+
+    /// <summary>
+    /// в начале сцены записываем название стартового окно в массив
+    /// </summary>
     private void Start()
     {
-        // записываем текущее окно в стек
-        AddStack(MainWindow.gameObject.name);
+        AddScene( MainWindow.gameObject.name );
+        curWin = MainWindow.gameObject.name;
+        preWin = MainWindow.gameObject.name;
     }
 
-    public static void AddStack(string name) {
-          ActiveWindow.Add(name);
+    /// <summary>
+    /// добавляем в массив
+    /// </summary>
+    /// <param name="name">имя открытого окна</param>
+    public static void AddScene( string name ) {
+        ListScene.Add(name);
+        curWin = name;
     }
 
-    public static void DeleteStack()
+    /// <summary>
+    /// удаляем из массива
+    /// </summary>
+    public static void DeleteScene()
     {
-        // удаляем последнее открытое окно
-        ActiveWindow.RemoveAt(ActiveWindow.Count - 1);
+        ListScene.RemoveAt(ListScene.Count - 1);
     }
 
-    public static string GetStack()
+    /// <summary>
+    /// получаем последний элемент массива, оно же текущее окно
+    /// </summary>
+    /// <returns></returns>
+    public static string GetCurrentScene()
     {
-        if (ActiveWindow.Count > 0)
+        string current = "";
+
+        if (ListScene.Count > 0)
         {
-            return ActiveWindow[ActiveWindow.Count - 1].ToString();
+            current = ListScene[ListScene.Count - 1].ToString();
         }
-        else {
-            return "";
-        }
+
+        return current;
     }
 
-    public static int GetStackCount()
+    /// <summary>
+    /// Возвращает предыдущую сцену
+    /// </summary>
+    /// <returns></returns>
+    public static string GetPreviousScene()
     {
-        return ActiveWindow.Count;
+        //Debug.Log("размер массива :"+ListScene.Count);
+        string pre = "";
+
+        if (ListScene.Count > 1)
+        {
+            pre = ListScene[ListScene.Count - 2].ToString();
+        }
+
+        return pre;
     }
 
-    public static bool refreshWin;
+    /// <summary>
+    /// получаем колличество элементов в массиве
+    /// </summary>
+    /// <returns></returns>
+    public static int GetCountScene()
+    {
+        return ListScene.Count;
+    }
 
-
-
+    /// <summary>
+    /// Центр управления окнами
+    /// </summary>
     private void Update()
     {
-        Debug.Log(GetStack());
-        switch (GetStack()) {
+        Debug.Log("Текущая сцена: " + GetCurrentScene() );
+        Debug.Log("Предыдущая сцена: " + GetPreviousScene());
+
+        switch (GetPreviousScene())
+        {
             case "MainScene":
-                if (!refreshWin)
+                if (!refreshHideWin)
                 {
-                    refreshWin = !refreshWin;
+                    refreshHideWin = !refreshHideWin;
+                    MainWindow.Play("hide_win");
+                }
+                break;
+
+            case "Scene_1":
+                if (!refreshHideWin)
+                {
+                    refreshHideWin = !refreshHideWin;
+                    Scene_1.Play("hide_win");
+                }
+                break;
+
+            case "Level_1":
+                if (!refreshHideWin)
+                {
+                    refreshHideWin = !refreshHideWin;
+                    Level_1.Play("hide_win");
+                }
+                break;
+
+            case "ScenePazl":
+                if (!refreshHideWin)
+                {
+                    refreshHideWin = !refreshHideWin;
+                    ScenePazl.Play("hide_win");
+                }
+                break;
+        }
+
+
+
+        switch (GetCurrentScene()) {
+            case "MainScene":
+                if (!refreshShowWin)
+                {
+                    refreshShowWin = !refreshShowWin;
                     MainWindow.Play("show_win");
                 }
             break;
 
             case "Scene_1":
-                if (!refreshWin)
+                if (!refreshShowWin)
                 {
-                    refreshWin = !refreshWin;
-                    Scene1.Play("show_win");
+                    refreshShowWin = !refreshShowWin;
+                    Scene_1.Play("show_win");
                 }
                 break;
 
+            case "Level_1":
+                if (!refreshShowWin)
+                {
+                    refreshShowWin = !refreshShowWin;
+                    Level_1.Play("show_win");
+                }
+                break;
+
+            case "ScenePazl":
+                if (!refreshShowWin)
+                {
+                    refreshShowWin = !refreshShowWin;
+                    ScenePazl.Play("show_win");
+                }
+                break;
+
+            default:
+                if (!refreshShowWin)
+                {
+                    refreshShowWin = !refreshShowWin;
+                    MainWindow.Play("show_win");
+                }
+                break;
         }
+
+
+        
     }
 }

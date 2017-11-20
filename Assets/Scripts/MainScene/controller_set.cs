@@ -39,7 +39,7 @@ public class controller_set : MonoBehaviour, IPointerUpHandler, IPointerDownHand
             // затеняем фон и делаем его не активным
             BackGround.SetActive(true);
 
-            MainController.AddStack(Window.gameObject.name);
+            MainController.AddScene(Window.gameObject.name);
         }
     }
     

@@ -28,7 +28,7 @@ public class controller_close : MonoBehaviour, IPointerUpHandler, IPointerDownHa
             BackGround.SetActive(false);
             Window.SetBool("win_show", false);
             Window.SetBool("win_hide", true);
-            MainController.DeleteStack();
+            MainController.DeleteScene();
         }
     }
 

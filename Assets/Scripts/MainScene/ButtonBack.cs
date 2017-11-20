@@ -14,9 +14,10 @@ public class ButtonBack : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
         GetComponent<AudioSource>().Play();
 
-        MainController.refreshWin = false;
+        MainController.refreshShowWin = false;
+        MainController.refreshHideWin = false;
 
-        MainController.AddStack(Window.gameObject.name);
+        MainController.AddScene(Window.gameObject.name);
     }
 }
 

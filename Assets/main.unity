@@ -1084,10 +1084,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WindowSettings: {fileID: 326738257}
-  Scene1: {fileID: 1836177583}
+  MainWindow: {fileID: 527067959}
+  Scene_1: {fileID: 1836177583}
+  Level_1: {fileID: 513392691}
   ScenePazl: {fileID: 398536702}
   level_1_background: {fileID: 513392691}
-  MainWindow: {fileID: 527067959}
 --- !u!4 &537462536
 Transform:
   m_ObjectHideFlags: 0
@@ -1934,7 +1935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7a7fb8a38045c4894f79116748dd59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Window: {fileID: 513392691}
+  Window: {fileID: 1836177583}
 --- !u!82 &1535728306
 AudioSource:
   m_ObjectHideFlags: 0

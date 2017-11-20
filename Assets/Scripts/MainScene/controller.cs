@@ -27,13 +27,11 @@ public class controller : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         // проиграть звук нажатия
         GetComponent<AudioSource>().Play();
 
-        // проигрываем анимацию
-        //Window.Play("show_win");
+        MainController.refreshShowWin = false;
+        MainController.refreshHideWin = false;
 
-        MainController.refreshWin = false;
-        
         // записываем в стек
-        MainController.AddStack(Window.gameObject.name);
+        MainController.AddScene (Window.gameObject.name);
 
     }
 

@@ -45,9 +45,12 @@ public class button_level_1 : MonoBehaviour, IPointerUpHandler, IPointerDownHand
             if (!start_load)
             {
                 start_load = !start_load;
-                
+
+                MainController.refreshShowWin = false;
+                MainController.refreshHideWin = false;
+
                 // записываем в стек
-                MainController.AddStack(Window.gameObject.name);
+                MainController.AddScene(Window.gameObject.name);
             }
         }
     }

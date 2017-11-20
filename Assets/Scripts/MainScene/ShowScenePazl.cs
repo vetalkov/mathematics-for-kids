@@ -26,10 +26,11 @@ public class ShowScenePazl : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             // проигрываем звук щелчка
             GetComponent<AudioSource>().Play();
 
-            Window.Play("show_win");
+            MainController.refreshShowWin = false;
+            MainController.refreshHideWin = false;
 
             // добавляем в стек новое окно
-            MainController.AddStack(Window.gameObject.name);
+            MainController.AddScene(Window.gameObject.name);
         }
     }
 
