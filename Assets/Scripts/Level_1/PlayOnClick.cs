@@ -7,6 +7,7 @@ public class PlayOnClick : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
     public AudioClip aClip;
 
+
     public void OnPointerDown(PointerEventData evenData)
     {
         AudioSource audio = GetComponent<AudioSource>();
@@ -19,6 +20,7 @@ public class PlayOnClick : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
     public void OnPointerUp(PointerEventData evenData)
     {
+
     }
 
 }

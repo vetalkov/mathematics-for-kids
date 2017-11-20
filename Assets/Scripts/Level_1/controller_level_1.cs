@@ -6,11 +6,10 @@ using UnityEngine.EventSystems;
 
 public class controller_level_1 : MonoBehaviour {
 
-    private bool StartScene;
-    private bool EndScene;
+    public static bool StartScene;
 
-    private GameObject[] PrefabForDestr;
-    private GameObject[] PrefabForDestrDigi;
+    private static GameObject[] PrefabForDestr;
+    private static GameObject[] PrefabForDestrDigi;
     
 
     public GameObject[] prefabImage;
@@ -19,10 +18,15 @@ public class controller_level_1 : MonoBehaviour {
     public Animator Window;
 
     public static int rand;
+    public static int countRound;
 
- 
+    private void Awake()
+    {
+        countRound = 0;
+        rand = 0;
+    }
 
-    private void Update () {
+     private void Update () {
 
             if (MainController.GetStack() == Window.gameObject.name)
             {
@@ -30,7 +34,7 @@ public class controller_level_1 : MonoBehaviour {
                 {
                     StartScene = !StartScene;
                     // запускаем инициализацию
-                    PushObject();
+                    GenerateLevel();
                 }
             }
             else {
@@ -65,10 +69,46 @@ public class controller_level_1 : MonoBehaviour {
 
 	}
 
+
+    // перезагрузка уровня
+    public static IEnumerator ReloadLevel()
+    {
+
+        // анимация если правильно солнышко улыбается
+        // иначе прячется за тучку
+
+        yield return new WaitForSeconds(0.5f);
+
+        countRound++;
+
+        Debug.Log("Ответ номер: " + countRound);
+
+        StartScene = false;
+
+        // если массив объектов не пуст, то удаляем его содержимое
+        if (PrefabForDestr != null)
+        {
+            for (int i = 0; i < PrefabForDestr.Length; i++)
+            {
+                Destroy(PrefabForDestr[i]);
+            }
+        }
+
+        if (PrefabForDestrDigi != null)
+        {
+            for (int i = 0; i < PrefabForDestrDigi.Length; i++)
+            {
+                Destroy(PrefabForDestrDigi[i]);
+            }
+        }
+    }
+
+
+
     /// <summary>
     /// расставляем объекты на канвасе
     /// </summary>
-    public void PushObject()
+    public void GenerateLevel()
     {
         // ширина экрана 
         float screen_width = Screen.width;

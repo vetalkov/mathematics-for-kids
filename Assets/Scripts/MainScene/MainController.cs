@@ -11,6 +11,8 @@ public class MainController : MonoBehaviour
     public Animator Scene1;
     public Animator ScenePazl;
     public Animator level_1_background;
+    public Animator MainWindow;
+
     public static ArrayList ActiveWindow;
 
     public static bool StatusAnimationEnd;
@@ -24,7 +26,7 @@ public class MainController : MonoBehaviour
     private void Start()
     {
         // записываем текущее окно в стек
-        AddStack(gameObject.name);
+        AddStack(MainWindow.gameObject.name);
     }
 
     public static void AddStack(string name) {
@@ -53,9 +55,30 @@ public class MainController : MonoBehaviour
         return ActiveWindow.Count;
     }
 
+    public static bool refreshWin;
+
+
 
     private void Update()
     {
-       
+        Debug.Log(GetStack());
+        switch (GetStack()) {
+            case "MainScene":
+                if (!refreshWin)
+                {
+                    refreshWin = !refreshWin;
+                    MainWindow.Play("show_win");
+                }
+            break;
+
+            case "Scene_1":
+                if (!refreshWin)
+                {
+                    refreshWin = !refreshWin;
+                    Scene1.Play("show_win");
+                }
+                break;
+
+        }
     }
 }

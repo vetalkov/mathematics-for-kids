@@ -11,10 +11,12 @@ public class ButtonBack : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
     public void OnPointerUp( PointerEventData evenData )
     {
-            Window.Play("hide_win");
-            GetComponent<AudioSource>().Play();
 
-            MainController.DeleteStack();
+        GetComponent<AudioSource>().Play();
+
+        MainController.refreshWin = false;
+
+        MainController.AddStack(Window.gameObject.name);
     }
 }
 
@@ -24,3 +26,20 @@ public class ButtonBack : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 // текущее время плюс частота
 // nextFire = Time.time + fireRate;
 // }
+
+         /*   // если ответили правильно 5 раз подряд
+        if (countRound >= 5)
+        {
+            // показываем сообщение что выиграли
+            Debug.Log("Вы прошли тур");
+
+            // сбрасываем счетчик
+            countRound = 0;
+            StartScene = false;
+            MainController.DeleteStack();
+            
+            // выходим в предыдущее окно
+            // Window.Play("hide_win");
+            // GetComponent<AudioSource>().Play();
+        }
+        */

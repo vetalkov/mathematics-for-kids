@@ -21,17 +21,19 @@ public class controller : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-            // вид кнопки когда она отжата
-            GetComponent<Image>().sprite = SpriteUp;
+        // вид кнопки когда она отжата
+        GetComponent<Image>().sprite = SpriteUp;
 
-            // проиграть звук нажатия
-            GetComponent<AudioSource>().Play();
+        // проиграть звук нажатия
+        GetComponent<AudioSource>().Play();
 
-            // проигрываем анимацию
-            Window.Play("show_win");
+        // проигрываем анимацию
+        //Window.Play("show_win");
 
-            // записываем в стек
-            MainController.AddStack(Window.gameObject.name);
+        MainController.refreshWin = false;
+        
+        // записываем в стек
+        MainController.AddStack(Window.gameObject.name);
 
     }
 

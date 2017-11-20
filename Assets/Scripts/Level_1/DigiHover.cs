@@ -10,17 +10,15 @@ public class DigiHover : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
     public AudioClip NoPravilno;
     public AudioClip Pravilno;
     private AudioSource otvet;
+    public Animator Window;
 
     void Start() {
-
         otvet = GetComponent<AudioSource>();
-
     }
 
     public void OnPointerDown( PointerEventData eventData)
     {
         digit = gameObject.tag;
- 
         switch (controller_level_1.rand) {
            
             case 1:
@@ -29,6 +27,7 @@ public class DigiHover : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
                     if (!otvet.isPlaying)
                     {
                         otvet.PlayOneShot(Pravilno);
+                        StartCoroutine(controller_level_1.ReloadLevel());
                     }
                 }
                 else {
@@ -45,6 +44,7 @@ public class DigiHover : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
                     if (!otvet.isPlaying)
                     {
                         otvet.PlayOneShot(Pravilno);
+                        StartCoroutine(controller_level_1.ReloadLevel());
                     }
                 }
                 else
@@ -62,6 +62,7 @@ public class DigiHover : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
                     if (!otvet.isPlaying)
                     {
                         otvet.PlayOneShot(Pravilno);
+                        StartCoroutine(controller_level_1.ReloadLevel());
                     }
                 }
                 else
@@ -79,6 +80,7 @@ public class DigiHover : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
                     if (!otvet.isPlaying)
                     {
                         otvet.PlayOneShot(Pravilno);
+                        StartCoroutine(controller_level_1.ReloadLevel());
                     }
                 }
                 else
@@ -96,6 +98,7 @@ public class DigiHover : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
                     if (!otvet.isPlaying)
                     {
                         otvet.PlayOneShot(Pravilno);
+                        StartCoroutine(controller_level_1.ReloadLevel());
                     }
                 }
                 else
@@ -113,6 +116,7 @@ public class DigiHover : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
                     if (!otvet.isPlaying)
                     {
                         otvet.PlayOneShot(Pravilno);
+                        StartCoroutine(controller_level_1.ReloadLevel());
                     }
                 }
                 else
@@ -130,6 +134,7 @@ public class DigiHover : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
                     if (!otvet.isPlaying)
                     {
                         otvet.PlayOneShot(Pravilno);
+                        StartCoroutine(controller_level_1.ReloadLevel());
                     }
                 }
                 else
@@ -147,6 +152,7 @@ public class DigiHover : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
                     if (!otvet.isPlaying)
                     {
                         otvet.PlayOneShot(Pravilno);
+                        StartCoroutine(controller_level_1.ReloadLevel());
                     }
                 }
                 else
@@ -164,6 +170,7 @@ public class DigiHover : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
                     if (!otvet.isPlaying)
                     {
                         otvet.PlayOneShot(Pravilno);
+                        StartCoroutine(controller_level_1.ReloadLevel());
                     }
                 }
                 else
@@ -182,13 +189,24 @@ public class DigiHover : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
                 }
                 break;
         }
-
-       
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+    }
 
+    public void CheckAnswer() {
+        // если ответили правильно 5 раз подряд
+        if (controller_level_1.countRound >= 5)
+        {
+            // показываем сообщение что выиграли
+            Debug.Log("Вы прошли тур");
+
+            // сбрасываем счетчик
+            controller_level_1.countRound = 0;
+            controller_level_1.StartScene = false;
+            MainController.DeleteStack();
+        }
     }
 
 }

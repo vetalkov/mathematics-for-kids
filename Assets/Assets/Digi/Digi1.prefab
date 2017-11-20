@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NoPravilno: {fileID: 8300000, guid: 75b2ec04d01fbf54ca91c89ac51cd4a7, type: 3}
   Pravilno: {fileID: 8300000, guid: bbf3738b0a33e0c48b31c98c1d6eb452, type: 3}
+  Window: {fileID: 0}
 --- !u!222 &222554358765183840
 CanvasRenderer:
   m_ObjectHideFlags: 1
